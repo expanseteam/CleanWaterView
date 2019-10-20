@@ -9,9 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class NasaDataComponent {
   public forecasts: WeatherForecast[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
+  constructor(http: HttpClient) {
+    http.get<any[]>('https://images-api.nasa.gov//search?q=water').subscribe(result => {
+      console.log(result);
+      // result.collection.items.forEach(function(item) {
+      //   item.links.forEach(function(link) {
+      //     console.log(link);
+      //   });
+      // });
     }, error => console.error(error));
   }
 }
